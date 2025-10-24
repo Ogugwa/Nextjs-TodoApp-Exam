@@ -50,7 +50,7 @@ export default function Login() {
         <div className="flex flex-col items-center p-2">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
-            <p className="mt-2 text-gray-600">Login to your Deborah's App Account</p>
+            <p className="mt-2 text-gray-600">Login to your Deborah&apos;s App Account</p>
           </div>
 
           {/* Form */}
@@ -111,7 +111,7 @@ export default function Login() {
             </div>
 
             <div className="mt-4 text-center text-sm text-gray-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
                 Sign Up
               </Link>

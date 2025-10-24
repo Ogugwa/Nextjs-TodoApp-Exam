@@ -53,8 +53,8 @@ export default function Signup() {
         {/* Left section */}
         <div className="flex flex-col items-center p-2">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Join Deborah's App</h1>
-            <p className="mt-2 text-gray-600">Signup to enjoy the best of Deborah's App</p>
+            <h1 className="text-3xl font-bold text-gray-900">Join Deborah&apos;s App</h1>
+            <p className="mt-2 text-gray-600">Signup to enjoy the best of Deborah&apos;s App</p>
           </div>
 
           {/* Form */}
