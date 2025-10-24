@@ -3,10 +3,10 @@
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 import FormFooter from "../../components/formFooter";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 type SignupFormInputs = {
   name: string;
@@ -17,7 +17,6 @@ type SignupFormInputs = {
 
 export default function Signup() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<SignupFormInputs>();
-
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -28,17 +27,21 @@ export default function Signup() {
     }
 
     setLoading(true);
+
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
     });
+
     setLoading(false);
 
     if (error) {
       alert(error.message);
     } else {
-      alert("Signup successful! Please check your email to confirm.");
-      router.push("/login"); // Redirect to login after signup
+      alert(
+        "Signup successful! Please check your email to confirm your account before logging in."
+      );
+      router.push("/login");
     }
   };
 
@@ -50,14 +53,13 @@ export default function Signup() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between shadow-xl overflow-hidden w-full lg:w-[80%]">
-        {/* Left section */}
-        <div className="flex flex-col items-center p-2">
+        {/* Left side (Form Section) */}
+        <div className="flex flex-col justify-center p-8 w-full lg:w-1/2 bg-white">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Join Deborah&apos;s App</h1>
             <p className="mt-2 text-gray-600">Signup to enjoy the best of Deborah&apos;s App</p>
           </div>
 
-          {/* Form */}
           <form className="flex flex-col space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="block text-md font-medium mb-2">Full Name</label>
@@ -130,48 +132,47 @@ export default function Signup() {
             </button>
           </form>
 
-          {/* Divider + Google Signup */}
-          <div className="mt-6 text-center">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white">Or</span>
-              </div>
+          {/* Divider */}
+          <div className="mt-6 text-center relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
             </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white">Or</span>
+            </div>
+          </div>
 
-            <div className="mt-6">
-              <button
-                onClick={handleGoogleSignup}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-blue-50"
-              >
-                <FcGoogle className="h-5 w-5" />
-                Signup with Google
-              </button>
-            </div>
+          {/* Google signup */}
+          <div className="mt-6">
+            <button
+              onClick={handleGoogleSignup}
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-blue-50"
+            >
+              <FcGoogle className="h-5 w-5" />
+              Signup with Google
+            </button>
+          </div>
 
-            <div className="mt-4 text-center text-sm text-gray-600">
-              Already have a user?{" "}
-              <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
-                Login
-              </Link>
-            </div>
+          {/* Login link */}
+          <div className="mt-4 text-center text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+              Login
+            </Link>
           </div>
         </div>
 
-        {/* Right side image */}
-        <div className="hidden lg:block">
+        {/* Right side (Image Section) */}
+        <div className="hidden lg:block lg:w-1/2">
           <img
             src="/images/login_img.jpg"
-            alt="Login illustration"
-            className="w-full max-w-md h-auto"
+            alt="Signup illustration"
+            className="w-full h-full object-cover"
             loading="lazy"
           />
         </div>
       </div>
 
-      {/* Footer */}
       <FormFooter />
     </div>
   );
