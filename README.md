@@ -1,4 +1,7 @@
 # Strictly using npm for the project
+## Created the basetod page
+ Installed tanstack query using npm install @tanstack/react-query
+Installed axios for my todo calss npm install axios @tanstack/react-query
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).

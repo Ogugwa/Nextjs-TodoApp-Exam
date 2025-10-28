@@ -1,4 +1,5 @@
 // app/layout.tsx
+import Providers from "./providers";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-gray-50 text-gray-800">
+        <Providers>
         {children}
+        </Providers>
       </body>
     </html>
   );
